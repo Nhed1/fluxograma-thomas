@@ -6,6 +6,7 @@ import {
   createProcessoAction,
   getClientesAction,
 } from "./actions";
+import Link from "next/link";
 
 export default function Home() {
   const [clientes, setClientes] = useState([]);
@@ -125,6 +126,10 @@ export default function Home() {
           Adicionar Processo
         </button>
       </form>
+
+      <div className="fixed bottom-36 right-36">
+        <Link href="/processos">Analisar Processos</Link>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 "use server";
+import { sql } from "drizzle-orm";
 import { db } from "../db";
 import { clienteTable, processoTable } from "../db/schema";
 
@@ -32,4 +33,10 @@ export const createProcessoAction = async (form) => {
     tipoDeCredito,
     estado,
   });
+};
+
+export const getProcessosAction = async () => {
+  const processos = await db.select().from(processoTable);
+
+  return processos;
 };
