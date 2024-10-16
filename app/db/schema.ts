@@ -1,21 +1,22 @@
 import { integer, sqliteTable, text } from "drizzle-orm/sqlite-core";
 
-export const userTable = sqliteTable("user", {
+export const clienteTable = sqliteTable("cliente", {
   id: integer("id", { mode: "number" })
     .notNull()
     .primaryKey({ autoIncrement: true }),
-  email: text("email").notNull(),
-  hashedPassword: text("hashed_password"),
-  name: text("name"),
+  tipo: text("tipo"),
+  score: text("score"),
+  nome: text("nome"),
 });
 
-export const sessionTable = sqliteTable("session", {
-  id: text("id").notNull().primaryKey(),
-  userId: integer("user_id")
+export const processoTable = sqliteTable("processo", {
+  id: integer("id", { mode: "number" })
     .notNull()
-    .references(() => userTable.id),
-  expiresAt: integer("expires_at").notNull(),
+    .primaryKey({ autoIncrement: true }),
+  estado: text("estado"),
+  tipoDeCredito: text("tipoDeCredito"),
+  deferido: text("deferido"),
+  clienteId: integer("clienteId", { mode: "number" })
+    .notNull()
+    .references(() => clienteTable.id),
 });
-
-export type InsertUser = typeof userTable.$inferInsert;
-export type SelectUser = typeof userTable.$inferSelect;
