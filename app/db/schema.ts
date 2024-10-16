@@ -19,4 +19,5 @@ export const processoTable = sqliteTable("processo", {
   clienteId: integer("clienteId", { mode: "number" })
     .notNull()
     .references(() => clienteTable.id),
+  status: integer("status").default(1),
 });
